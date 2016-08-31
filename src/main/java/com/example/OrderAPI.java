@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +46,10 @@ public class OrderAPI {
 	@RequestMapping(value = "/api/order", method = RequestMethod.GET, produces = {
 			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity<List<Order>> findAll() {
-		return new ResponseEntity<List<Order>>(orderRepository.findAll(), HttpStatus.OK);
+		List<Order> orders =  new ArrayList<>();
+		orders.add(new Order(1,"Local Order", new Date(),true));
+		return new ResponseEntity<List<Order>>(orders, HttpStatus.OK);
+		//return new ResponseEntity<List<Order>>(orderRepository.findAll(), HttpStatus.OK);
 	}
+	
 }
